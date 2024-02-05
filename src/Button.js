@@ -11,7 +11,7 @@ function Button({
     outline
 }) {
     return (
-        <button>{children}</button>
+        <button className="px-3 py-1.5 border border-sky-600 bg-sky-500 text-white">{children}</button>
     );
 }
 
