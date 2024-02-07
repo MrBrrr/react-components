@@ -10,8 +10,10 @@ function Button({
     warning,
     danger,
     rounded,
-    outline
+    outline,
+    ...rest  // handling all the different props: event handlers like onClick, onmouseover etc. 
 }) {
+    console.log(rest)
     const classes = twMerge(className("flex items-center px-3 py-1.5 border", {
         "border-sky-600 bg-sky-500 text-white": primary,
         "border-gray-600 bg-gray-500 text-white": secondary,
@@ -27,7 +29,7 @@ function Button({
         "text-red-500": outline && danger,
     }))
     return (
-        <button className={classes}>{children}</button>
+        <button {...rest} className={classes}>{children}</button>
     );
 }
 

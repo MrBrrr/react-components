@@ -2,18 +2,21 @@ import { GrApple, GrAccessibility, GrBike, GrBug, GrClear} from "react-icons/gr"
 import Button from "./Button";
 
 function App() {
+  const handleClick = () => {console.log("click!")}
+  const handleMouseOver = () => {console.log("mouse enetring!")}
+  const handleMouseLeave= () => {console.log("mouse leaving!")}
   return <div>App
     <div>
       {/* <Button text="click here"/> 
       prop approach vs. children approach */}
-      <Button primary>
+      <Button primary onClick={handleClick}>
         <GrAccessibility />
         {/* <GrAccessibility className="mr-1" />  that would be a ssolution, but very tedious...*/}
         Click here!
       </Button>
     </div>
     <div>
-      <Button secondary outline>
+      <Button secondary outline onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
         <GrApple/>
         Buy now
       </Button>
