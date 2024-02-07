@@ -19,6 +19,9 @@ function App() {
     <div>
       <Button danger>Error!</Button>
     </div>
+    <div>
+      <Button>Plain button</Button>
+    </div>
   </div>;
 }
 
