@@ -50,3 +50,17 @@ const finalClassName = className("py-1.5", "border", "border-sky-600")
 const finalClassName = className("py-1.5", "border", "border-sky-600")
 console.log(finalClassName)  
 ```
+
+!! important library !!
+### Tailwind-merge
+
+https://www.npmjs.com/package/tailwind-merge
+
+
+### React-icons
+
+https://react-icons.github.io/react-icons/
+
+`npm install --save-exact react-icons@4.6.0`
+
+

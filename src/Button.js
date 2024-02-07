@@ -12,7 +12,7 @@ function Button({
     rounded,
     outline
 }) {
-    const classes = twMerge(className("px-3 py-1.5 border", {
+    const classes = twMerge(className("flex items-center px-3 py-1.5 border", {
         "border-sky-600 bg-sky-500 text-white": primary,
         "border-gray-600 bg-gray-500 text-white": secondary,
         "border-green-600 bg-green-500 text-white": success,
