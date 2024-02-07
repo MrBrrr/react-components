@@ -27,7 +27,7 @@ function Button({
         "text-green-500": outline && success,
         "text-yellow-500": outline && warning,
         "text-red-500": outline && danger,
-    }))
+    }), rest.className)  // this allows to applly className prop from the aplication and prioritize it 
     return (
         <button {...rest} className={classes}>{children}</button>
     );

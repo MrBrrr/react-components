@@ -9,10 +9,17 @@ function App() {
     <div>
       {/* <Button text="click here"/> 
       prop approach vs. children approach */}
-      <Button primary onClick={handleClick}>
+      <Button primary onClick={handleClick} className="mb-5  bg-blue-100">
         <GrAccessibility />
         {/* <GrAccessibility className="mr-1" />  that would be a ssolution, but very tedious...*/}
         Click here!
+      </Button>
+    </div>
+    <div>
+      <Button primary onClick={handleClick}>
+        <GrAccessibility />
+        {/* <GrAccessibility className="mr-1" />  that would be a ssolution, but very tedious...*/}
+        Click here 2!
       </Button>
     </div>
     <div>
