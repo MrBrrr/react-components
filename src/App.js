@@ -1,5 +1,5 @@
 import { GrApple, GrAccessibility, GrBike, GrBug, GrClear} from "react-icons/gr";
-import Button from "./Button";
+import Button from "./components/Button";
 
 function App() {
   const handleClick = () => {console.log("click!")}
