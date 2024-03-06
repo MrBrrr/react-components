@@ -2,11 +2,15 @@ import { useState } from "react";
 import { GoChevronDown, GoChevronRight } from "react-icons/go";
 
 function Accordion({ items }) {
-    const [expandedIndex, setExpandedIndex] = useState(0);
+    const [expandedIndex, setExpandedIndex] = useState(-1);
 
     // define outsite the mapping function (easier to read it, common way on big project) 
     const handleClick = (x) => {
-        setExpandedIndex(x)  // 'index' in not defined! -> go hybrid shor&long -hand version of event handler 
+        if (x === expandedIndex) { 
+            setExpandedIndex(-1)
+        } else {
+            setExpandedIndex(x)  // 'index' in not defined! -> go hybrid shor&long -hand version of event handler 
+        }
     }
 
     const renderedItems = items.map((item, index) => {
