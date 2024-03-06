@@ -5,12 +5,18 @@ function Accordion({ items }) {
     const [expandedIndex, setExpandedIndex] = useState(-1);
 
     // define outsite the mapping function (easier to read it, common way on big project) 
-    const handleClick = (x) => {
-        if (x === expandedIndex) { 
-            setExpandedIndex(-1)
-        } else {
-            setExpandedIndex(x)  // 'index' in not defined! -> go hybrid shor&long -hand version of event handler 
-        }
+    const handleClick = (newIndex) => {
+
+        console.log("STALE version of expanded index", expandedIndex)
+
+        setExpandedIndex((current) => {
+            console.log("to most up to date version of expanded index", current)
+            if (newIndex === current) { 
+                return -1
+            } else {
+                return newIndex  // 'index' in not defined! -> go hybrid shor&long -hand version of event handler 
+            }       
+        })
     }
 
     const renderedItems = items.map((item, index) => {

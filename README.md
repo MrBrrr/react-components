@@ -119,3 +119,30 @@ myFunction(propsItems, /*???*/);  // ['collapsed', 'collapsed', 'expanded']
 ## JS Boolean Expressions
 `||` returns the firts truthy value
 `&&` returns the first falsey value or the last truthy
+
+### React useState delays:
+
+#### PROBLEM: React updates the piece of state but not immidatiely... 
+__Batching__ is an optimization of React causing above issue but allowing to update few states in the same moment - the application works fast and smooth
+
+How to see the issue? 
+Go to console:
+```js
+$0.click();  // opens or closes the content
+$0.click(); $0.click();  // the accordion does not come back to the initial state
+```
+It is only a problem when clicks become very quick one after another. Normal human user would be able to do this.
+
+#### SOLUTION 1: Force React to update instantly
+Slowing down, truning batching off
+
+#### SOLUTION 2: Access the most up to date value with Functional State Update
+```js
+const [value, setValue] = useState(-1)
+...
+const handleClick = (newIdx) => {
+    setValue((current) => {
+    // use 'current' in the logic instead of 'value'
+    })
+}
+```
