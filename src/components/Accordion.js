@@ -17,7 +17,7 @@ function Accordion({ items }) {
         // key is required in list items rendered (App.js)
         return (
             <div key={item.id}>
-                <div>{item.label}</div>
+                <div onClick={() => setExpandedIndex(index)}>{item.label}</div>
                 {isExpended && <div>{item.content}</div>}  
             </div>
         )
