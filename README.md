@@ -16,6 +16,7 @@ This work fine with everything:
 `<Button>Clik me!</Button>` ~~= `<Button primary={false}>Clik me!</Button>`  
 It's actually `undefined`, but treated the same as `false`
 
+## STYLING: 
 
 ### Introducing  CSS Box Model
 
@@ -51,11 +52,19 @@ const finalClassName = className("py-1.5", "border", "border-sky-600")
 console.log(finalClassName)  
 ```
 
-!! important library !!
-### Tailwind-merge
+### Tailwind and Tailwind-merge
 
+https://tailwindcss.com/docs/
 https://www.npmjs.com/package/tailwind-merge
 
+### Reusable "Presentation Components"
+
+1. Create a new component that shows a handful of JSX elements
+2. Make sure component accepts and uses `{children}` prop
+3. Allow extra `classNames` to be passed in and merge them - with className lib
+4. Take extra prop, pass them trough to root element - with `{...rest}` prop
+
+check implementation [here](/src/components/Panel.js)
 
 ### React-icons
 
