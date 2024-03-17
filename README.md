@@ -148,7 +148,7 @@ const handleClick = (newIdx) => {
 ```
 more in components/Accordion.js or Dropdown.js
 
-## Event hanlder in mapping function 
+## Event handler in mapping function 
 
 ```js
 const handleWithEvent = (event) => {...}
@@ -160,7 +160,7 @@ consr rendered = data.map((option) => {
 })
 ```
 
-## Dropdown:
+## MASTERING DESIGN PROCESS - Dropdown:
 
 1. & 2. Steps & Categorize 
 Clicks on dropdown - event
@@ -199,6 +199,37 @@ EVENTS - names for handlers:
 ![alt text](image-2.png)
 optionSelected + handleSelect ->  parent
 menu opnened/closed + handleToggle -> Dropdown.js
+
+## Handling Input aka "Controlled Input"
+1. Create a new piece of state 
+2. Create event handler watching on `onChange` event
+3. When `onChange` event fires, get the data from the input 
+4. Update the state with that data
+5. Pass state to the input as the value prop
+
+### EXAMPLE + How react renders the above:
+
+Look at: ![this graph](image-3.png) This will be repeated in Dropdown component - chech ![graph](image-4.png).
+
+#### ad. 1. Create a new piece of state 
+in parent component (SearchBar)
+and pass it to the child component (TextInput) as prop named "value".  
+Whenever data is passed to the "value prop" react forceably updates the text in text input
+
+#### ad. 2. Create event handler 
+called "handleChange" in parent component  
+and pass it to child as onChange prop
+
+#### ad 3. When `onChange` event fires, get the data from the input 
+when user pass anythign to the input, react fires the onChange and thus hadleChange function with new data 
+
+#### ad. 4. Update the state with that data
+inside handleChange function,
+
+#### ad. 5. Pass state to the input as the value prop
+because the state was updated the parent (SearchBar) is going to rerender itself and pass new state to the value prop of child (TextInput) 
+...react foceably updates the text...
+
 
 
 
