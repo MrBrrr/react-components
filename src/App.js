@@ -15,7 +15,7 @@ function App() {
     updateSelection(option)
   }
 
-  return <Dropdown options={options} selectedColor={selection} onColorSelect={handleSelect} />
+  return <Dropdown options={options} value={selection} onChange={handleSelect} />
 }
 
 export default App;

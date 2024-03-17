@@ -230,7 +230,11 @@ inside handleChange function,
 because the state was updated the parent (SearchBar) is going to rerender itself and pass new state to the value prop of child (TextInput) 
 ...react foceably updates the text...
 
+## Comminity Convention with Prop Names
 
+Refers only to child component, not the parent one - there the names (piece of state and event handler) could be whatever I choose
 
-
+`form control` component - any kind of component where user provide some input value (text, text area, text input, dropdown, checkbox etc.)  
+`value` - name of the prop where the current value is stored  
+`onChange` - name of the prop called when value changed  
 

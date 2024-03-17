@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function Dropdown({ options, selectedColor, onColorSelect }) {
+function Dropdown({ options, value, onChange }) {
     const [isOpen, setOpen] = useState(false)
     // const [selectedColor, setSelectedColor] = useState(null)
 
@@ -11,11 +11,11 @@ function Dropdown({ options, selectedColor, onColorSelect }) {
     }
 
     const handleSelect = (selected) => {
-        setOpen(false)  // close dropdown
-        onColorSelect(selected)
+        setOpen(false)
+        onChange(selected)
     }
-    // let content = selectedColor? selectedColor.label : "Select..." ===
-    let content = selectedColor?.label || "Select..."
+    // let content = value? value.label : "Select..." ===
+    let content = value?.label || "Select..."
 
     const renderedOptions = options.map((option) => {
         return <div onClick={() => handleSelect(option)} key={option.value}>{option.label}</div>
