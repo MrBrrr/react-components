@@ -247,3 +247,116 @@ Refers only to child component, not the parent one - there the names (piece of s
 `value` - name of the prop where the current value is stored  
 `onChange` - name of the prop called when value changed  
 
+## Dropdown bug
+
+Clicking on second dropdown (or anywhere else) should close the first dropdown - [look here](image-5.png)
+
+### JS Solution: Document-wide event listiner 
+```js
+  const handleClick = (event) => {
+    console.log(event.target);
+  }
+
+  document.addEventListener("click", handleClick);
+```  
+### Event capturing / bubbling
+Whenever user interact with page (clik, drag, drop etc..) browser searches for event handlers corresponding to user action. This searching is divided into 3 phases:
+`Capture Phase` --> `Target Phase` --> `Bubble Phase`
+
+Example application:
+```js
+<body>
+    <div>
+        <button> 
+            Click me!
+        </button> 
+    </div>
+</body>
+```
+User clicks on button, so the browser starts searching the event handler.
+
+#### Ad. `Capture Phase`
+Browser looks at element cliked <button> and then searches from the most parent element of the target and checks if that has apropriate event handler. If no, goes to the second most etc... so <body> -> <div>. If it sees <button> this phase is going to stop/
+If event handler was found, it is going to be calledn and the phase is finished.
+
+#### Ad. `Target Phase` 
+Ask the same but only the Target element, so the <button>. And call event handler if was found.
+
+#### Ad. `Bubble Phase`
+Ask the same the immediate parent elemnt <div>, and call event handler if was found. Then next parent and repeat <body>
+
+#### Sumary
+body -> div -> button -> div -> body
+Capture Phase is usually disabled (skipped)
+
+```js
+document.addEventListener('click', handleClick);  // skipping capture
+document.addEventListener('click', handleClick, false);  // skipping capture
+document.addEventListener('click', handleClick, true);  // sets up eevent handler to start from capture phase
+```
+
+#### All together:
+```js
+const dropdown = document.querySelector(".w-48");
+const handleClick = (event) => {
+    if(dropdown.contains(event.target)) {
+        console.log("Inside dropdown")
+    } else {
+        console.log("Outside dropdown")
+    }
+}
+document.addEventListener("click", handleClick, true)
+```
+
+#### Explenation of 3d argument:
+
+```js
+document.addEventListener("click", handleClick, true)
+```
+-> users clicks an option  
+-> browser starts from __capture__ phase and sees __console e.h.__ in <body> element   
+-> browser calls react that calls our e.h.  
+-> __react e.h.__ - state updates and React will rerender very soon, but not instantly [batching](#-PROBLEM:-React-updates-the-piece-of-state-but-not-immidatiely...)  
+--> in the meantime the e.h. was called and checked whether clik was inside component or not  
+--> basing on state seems to be __inside__  
+-> finally React is rerendering 
+
+ __console e.h.__ is found and called before __react e.h.__
+
+
+```js
+document.addEventListener("click", handleClick, false)
+```
+-> userss click an option  
+-> browser starts from __target__ phase and sees __react e.h.__ inside dropdown's <div> tag, then goes to __bubble__ phase ..........
+-> __react e.h.__ - state updates and React will rerender very soon, but not instantly [batching](#-PROBLEM:-React-updates-the-piece-of-state-but-not-immidatiely...)  
+-> React is rerendering __slightly faster than the console event handler is called__
+-> .......... and finds __console e.h.__  
+-> browser calls react that calls our e.h.  
+-> e.h. is called and checked whether click was inside compnent or not  
+-> basing on state seems to be __outside__  
+
+__react e.h.__ is found and called before __console e.h.__
+
+#### performance.now()
+```js
+const dropdown = document.querySelector(".w-48");
+const handleClick = (event) => {
+    window.TimeThree = performance.now()
+    if(dropdown.contains(event.target)) {
+        console.log("Inside dropdown")
+    } else {
+        console.log("Outside dropdown")
+    }
+}
+document.addEventListener("click", handleClick, true)
+```
+```js
+timeTwo - timeOne
+>>> 3
+timeThree - timeTwo
+>>> 6.1  // False - console e.h. called after react e.h.
+>>> -1.1  // True - console e.h. called before react e.h.
+```
+
+## 

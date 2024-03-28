@@ -12,7 +12,9 @@ function Dropdown({ options, value, onChange }) {
         setOpen((current) => !current)  // even shorter xd
     }
 
+    window.TimeTwo = performance.now()
     const handleSelect = (selected) => {
+        window.TimeOne = performance.now()
         setOpen(false)
         onChange(selected)
     }
