@@ -297,7 +297,7 @@ document.addEventListener('click', handleClick, true);  // sets up eevent handle
 
 #### All together:
 ```js
-const dropdown = document.querySelector(".w-48");
+const dropdown = document.querySelector(".w-48");  // only first element on the screen with w-48 within className
 const handleClick = (event) => {
     if(dropdown.contains(event.target)) {
         console.log("Inside dropdown")
@@ -358,5 +358,44 @@ timeThree - timeTwo
 >>> 6.1  // False - console e.h. called after react e.h.
 >>> -1.1  // True - console e.h. called before react e.h.
 ```
+
+
+### React-way - useEffect & useRef hooks
+
+#### useEffect
+
+##### Reminder on cleanUp function:
+```js
+useEffect(() => {
+    const cleanUp = () => {}
+    return cleanUp
+}, [])
+```
+* 2nd argument = []
+* * useEffect is called every 1st rendering of component (showing on the screen)
+* * cleanUp (returned one) is called when component is being removed from the screen
+
+* 2nd argument = [arg]
+* * useEffect is called every time, the value of arg updates
+* * "new" cleanUp is returned every time
+* * cleanUp is called next time when component is rerendered (every time it is "previusly" returned clean up function)
+* * order: component rerender -> previus cleanUp -> useEffect -> new cleanUp returned
+* * if compinent is removed, the react calls last cleanUp   
+
+Using of
+```js
+const dropdown = document.querySelector(".w-48");
+```
+within React useEffect would cause an issue. For mutliple components with root element <div className="w-48">, every time user click anywhere on the screen, each component event listener need to get click event - actually the exact copy of one event. So every component needs a reference to the html that it created.
+--> useRef
+
+#### useRef
+* allows a component to get the reference to the DOM element that it created
+* ...
+
+1. create a _ref_ at the top of component `const divElement = useRef();`
+2. assign JSX to ref prop of _ref_ '<div ref={divElement}>` 
+`divElement` is pointer to html created by JSX (object with `current` property)
+3. access the DOM element with `ref.current`-> `divElement.current` - 
 
 ## 
