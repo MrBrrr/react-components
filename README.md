@@ -398,4 +398,30 @@ within React useEffect would cause an issue. For mutliple components with root e
 `divElement` is pointer to html created by JSX (object with `current` property)
 3. access the DOM element with `ref.current`-> `divElement.current` - 
 
-## 
+## Routing 
+
+### routing rules
+open up the web app -> GET rquest with `localhost:3000` -> react development server responses with landing page - index.js
+
+click on the link -> GET rquest with `localhost:3000/link` -> follow the routing rules -> show new html, or index.html if rules aren't defined
+
+Every time browser loads new html document (new page) the old js variavles and cod is dumped
+* np for html apps - one request = instantly new content on the screen (small delay)
+* kind of bad for React :/ - more requests (for js and rendered components)
+
+### Updating the address bar:
+
+* `window.location.pathname` - everything after port (localhost:3000/dahsdqdh -> /dahsdqdh)
+
+```js
+window.location = "localhost:3000/dahsdqdh"
+```
+This updates the address bar but also refreshes the page
+
+```js
+window.history.pushState({}, "", "/dahsdqdh")
+```
+This only overwrites the address bar
+
+__Also the state has to be stored in parent / context to avoid losing it value__
+##
