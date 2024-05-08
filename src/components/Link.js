@@ -5,9 +5,14 @@ import classNames from "classnames";
 import useNavigation from "../hooks/use-navigation";
 
 // children is some text shown inside the anchor element
-function Link({ url, children }) {
-    const { navigate } = useNavigation();
-    const stylingClasses = classNames("text-blue-500")
+// className allows developers to add some custom styling to the Link component
+function Link({ url, children, className, activeClassName}) {
+    const { navigate, currentUrl } = useNavigation();
+    const stylingClasses = classNames(
+        "text-blue-500", 
+        className, 
+        currentUrl === url && activeClassName
+    )
 
     const handleClick = (event) => {
         // event.ctrlKey = true if ctrl button is pressed while clicking a link (Win)

@@ -425,4 +425,11 @@ This only overwrites the address bar.
 Clicking __back__ or __forward__ buttons emits a __popstate__ event if the current url was added with _pushState_ function.
 
 __Also the state has to be stored in parent / context to avoid losing it value__
+
+### Common navigation libraries:
+* React-Router
+* Wouter
+* React-Location
+* Rerach-Router
+
 ##
