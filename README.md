@@ -405,8 +405,8 @@ open up the web app -> GET rquest with `localhost:3000` -> react development ser
 
 click on the link -> GET rquest with `localhost:3000/link` -> follow the routing rules -> show new html, or index.html if rules aren't defined
 
-Every time browser loads new html document (new page) the old js variavles and cod is dumped
-* np for html apps - one request = instantly new content on the screen (small delay)
+Every time browser loads new html document (new page) the old js variables and code are dumped
+* no problem for html apps - one request = instantly new content on the screen (small delay)
 * kind of bad for React :/ - more requests (for js and rendered components)
 
 ### Updating the address bar:
@@ -421,7 +421,8 @@ This updates the address bar but also refreshes the page
 ```js
 window.history.pushState({}, "", "/dahsdqdh")
 ```
-This only overwrites the address bar
+This only overwrites the address bar.  
+Clicking __back__ or __forward__ buttons emits a __popstate__ event if the current url was added with _pushState_ function.
 
 __Also the state has to be stored in parent / context to avoid losing it value__
 ##
