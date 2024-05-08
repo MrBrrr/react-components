@@ -467,7 +467,12 @@ export default Modal;
 ![alt text](image-8.png)
 ![alt text](image-9.png)
 
+####
 __Only becouse there is no positioned parent at all the current implementation works__
-__This wouldn't work in real applications__
+__This wouldn't work in real applications thus we can use react Portals__
+
+
+###
+
 
 ##

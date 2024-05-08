@@ -9,7 +9,8 @@ function ModalPage() {
         setShowModal(true);
     }
     return (
-        <div>
+        // relative here breakes the modal "silly" implementation
+        <div className="relative"> 
             <Button onClick={handleClick} primary>Open Modal</Button>
             {showModal && <Modal/>}
         </div>
