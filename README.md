@@ -432,4 +432,42 @@ __Also the state has to be stored in parent / context to avoid losing it value__
 * React-Location
 * Rerach-Router
 
+### Modal component and chalanges
+
+```js
+function Modal() {
+    return (
+        <div>
+            <div className="absolute inset-0 bg-gray-300 opacity-80"></div>
+            <div className="absolute inset-40 p-10 bg-white">
+                I'm a modal
+            </div>
+        </div>
+    );
+}
+
+export default Modal;
+```
+
+#### Tailwind className -> css rule
+`absolute` -> position: absolute 
+`inset-0` -> top: 0; left: 0; right: 0; bottom: 0;
+
+##### Css position property:
+* static - default
+* relative
+* absolute: puts element: at the top left corner of the closest parent with position property other than `static` 
+![top left corner of parent with position relative](image-6.png)
+![top left corner of entire screen](image-7.png)
+* fixed
+* sticky
+
+##### Css inset:
+* 0: if element `position: absolute`, this element will expand to fill height and width of the closest parent with position other than `static`
+![alt text](image-8.png)
+![alt text](image-9.png)
+
+__Only becouse there is no positioned parent at all the current implementation works__
+__This wouldn't work in real applications__
+
 ##
