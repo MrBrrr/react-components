@@ -1,21 +1,28 @@
 // overrides the normal navigation if user navigates inside the app, 
 // navigating outside the app will still reload the page (behave normally)
 
-import { useContext } from "react";
-import NavigationContext from "../context/navigation";
+import classNames from "classnames";
+import useNavigation from "../hooks/use-navigation";
 
 // children is some text shown inside the anchor element
 function Link({ url, children }) {
-
-    const { navigate } = useContext(NavigationContext);
+    const { navigate } = useNavigation();
+    const stylingClasses = classNames("text-blue-500")
 
     const handleClick = (event) => {
+        // event.ctrlKey = true if ctrl button is pressed while clicking a link (Win)
+        // event.metaKey = true if cmd button is pressed while clicking a link (OS)
+        if (event.metaKey || event.ctrlKey) {
+            return;  // open the link in a new tab, normally
+        }
         event.preventDefault();  // stops the total page refresh
         navigate(url);
     }
 
     return (
-        <a onClick={handleClick}>{children}</a>
+        <a className={stylingClasses} href={url} onClick={handleClick}>
+            {children}
+        </a>
     )
 }
 
