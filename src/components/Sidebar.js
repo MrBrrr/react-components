@@ -6,6 +6,7 @@ function Sidebar () {
         {label: "Accordion", url: "/accordion"},
         {label: "Buttons", url: "/buttons"},
         {label: "Modal", url: "/modal"},
+        {label: "Table", url: "/table"},
     ]
 
     const renderedLinks = links.map(link => {
