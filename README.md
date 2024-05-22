@@ -471,6 +471,32 @@ export default Modal;
 __Only becouse there is no positioned parent at all the current implementation works__
 __This wouldn't work in real applications thus we can use react Portals__
 
+### HTML table element
+
+```html
+<table>
+    <thead>
+        <th> Name </th>
+        <th> Age </th>
+        <th> Sex </th>
+    </thead>
+    <tbody>
+        <tr>
+            <!-- one row -->
+            <td>Anna</td>
+            <td>36</td>
+            <td>female</td>
+        </tr>
+        <tr>
+            <td>Jan</td>
+            <td>55</td>
+            <td>male</td>
+        </tr>
+    </tbody>
+</table>
+```
+Using table in React inappropriately causes to rasie an __error in console__
+
 
 ###
 
