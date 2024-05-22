@@ -515,7 +515,7 @@ export default Modal;
 **Only becouse there is no positioned parent at all the current implementation works**
 **This wouldn't work in real applications thus we can use react Portals**
 
-### HTML table element
+## HTML table element
 
 ```html
 <table>
@@ -542,6 +542,22 @@ export default Modal;
 
 Using table in React inappropriately causes to rasie an **error in console**
 
-###
+## React <Fragment/> component
+
+Simplified definition & usage:
+
+```js
+function Fragment({ children }) {
+  return children;
+}
+
+function someComponent() {
+  return (
+    <Fragment key={sth} anotherProp={value}>
+      {children}
+    </Fragment>
+  );
+}
+```
 
 ##

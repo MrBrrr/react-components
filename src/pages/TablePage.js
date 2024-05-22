@@ -21,16 +21,16 @@ function TablePage() {
     {
       label: "Score",
       render: (fruit) => fruit.score,
-      sort: () => {},
+      header: () => <th className="bg-red-500">Score</th>,
     },
-    {
-      label: "Length of the name",
-      render: (fruit) => fruit.name.length,
-    },
-    {
-      label: "Score squered",
-      render: (fruit) => fruit.score ** 2,
-    },
+    // {
+    //     label: "Length of the name",
+    //     render: (fruit) => fruit.name.length,
+    // },
+    // {
+    //     label: "Score squered",
+    //     render: (fruit) => fruit.score ** 2,
+    // },
   ];
 
   const keyFn = (fruit) => fruit.name;
