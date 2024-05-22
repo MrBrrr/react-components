@@ -1,11 +1,24 @@
-import { GrApple, GrAccessibility, GrBike, GrBug, GrClear} from "react-icons/gr";
+import {
+  GrApple,
+  GrAccessibility,
+  GrBike,
+  GrBug,
+  GrClear,
+} from "react-icons/gr";
 import Button from "../components/Button";
 
 function ButtonsPage() {
-    const handleClick = () => {console.log("click!")}
-    const handleMouseOver = () => {console.log("mouse enetring!")}
-    const handleMouseLeave= () => {console.log("mouse leaving!")}
-    return <div>
+  const handleClick = () => {
+    console.log("click!");
+  };
+  const handleMouseOver = () => {
+    console.log("mouse enetring!");
+  };
+  const handleMouseLeave = () => {
+    console.log("mouse leaving!");
+  };
+  return (
+    <div>
       <div>
         {/* <Button text="click here"/> 
         prop approach vs. children approach */}
@@ -23,8 +36,13 @@ function ButtonsPage() {
         </Button>
       </div>
       <div>
-        <Button secondary outline onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
-          <GrApple/>
+        <Button
+          secondary
+          outline
+          onMouseOver={handleMouseOver}
+          onMouseLeave={handleMouseLeave}
+        >
+          <GrApple />
           Buy now
         </Button>
       </div>
@@ -47,11 +65,10 @@ function ButtonsPage() {
         </Button>
       </div>
       <div>
-        <Button>
-          Plain button
-        </Button>
+        <Button>Plain button</Button>
       </div>
-    </div>;
+    </div>
+  );
 }
 
 export default ButtonsPage;

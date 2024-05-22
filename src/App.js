@@ -8,28 +8,28 @@ import TablePage from "./pages/TablePage";
 
 function App() {
   return (
-  <div className="container mx-aut grid grid-cols-6 gap-4 mt-4">
-    <Sidebar/>
-    {/* routing rules */}
-    <div className="col-span-5">
-      <Route path="/accordion">
-        <AccordionPage />
-      </Route>
-      <Route path="/">
-        <DropdownPage />
-      </Route>
-      <Route path="/buttons">
-        <ButtonPage />
-      </Route>
-      <Route path="/modal">
-        <ModalPage />
-      </Route>
-      <Route path="/table">
-        <TablePage />
-      </Route>
+    <div className="container mx-aut grid grid-cols-6 gap-4 mt-4">
+      <Sidebar />
+      {/* routing rules */}
+      <div className="col-span-5">
+        <Route path="/accordion">
+          <AccordionPage />
+        </Route>
+        <Route path="/">
+          <DropdownPage />
+        </Route>
+        <Route path="/buttons">
+          <ButtonPage />
+        </Route>
+        <Route path="/modal">
+          <ModalPage />
+        </Route>
+        <Route path="/table">
+          <TablePage />
+        </Route>
+      </div>
     </div>
-  </div>
-  )
+  );
 }
 
 export default App;
