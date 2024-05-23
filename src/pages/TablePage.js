@@ -1,4 +1,4 @@
-import Table from "../components/Table";
+import TableSortable from "../components/TableSortable";
 
 function TablePage() {
   // it's hardcoded now, but cpould be from anything: database, user input, etc
@@ -13,6 +13,7 @@ function TablePage() {
     {
       label: "Fruit Name",
       render: (fruit) => fruit.name,
+      sortValue: (fruit) => fruit.name,
     },
     {
       label: "Color",
@@ -21,7 +22,9 @@ function TablePage() {
     {
       label: "Score",
       render: (fruit) => fruit.score,
-      header: () => <th className="bg-red-500">Score</th>,
+      // header: () => <th className="bg-red-500">Score</th>,
+      // the above goes inside TableSortable component
+      sortValue: (fruit) => fruit.score,
     },
     // {
     //     label: "Length of the name",
@@ -37,7 +40,7 @@ function TablePage() {
 
   return (
     <div>
-      <Table data={data} config={config} keyFn={keyFn} />
+      <TableSortable data={data} config={config} keyFn={keyFn} />
     </div>
   );
 }

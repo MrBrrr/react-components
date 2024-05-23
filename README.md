@@ -560,4 +560,105 @@ function someComponent() {
 }
 ```
 
+## Sorting in JS
+
+### Simple usage of sort function
+
+```js
+const data = [5, 1, 4, 3];
+data.sort(); // 1,3,4,5
+
+const data = [5, 10, 4, 3];
+data.sort(); // 10,3,4,5  !!!!!
+```
+
+Converts values to string and sort them
+
+### Sort numbers with comparator function
+
+```js
+const data = [5, 10, 4, 3];
+data.sort((a, b) => {
+  return a - b;
+});
+```
+
+Compares every two values and check. **The values are passed swapped: `b`=`5`, `a`=`10`**:
+
+- if `a` is bigger than `b` returns positive value - values shouldn't be swapped
+- if `a` is smaller than `b` returns negative value - values should be swapped
+- if `a` is equalt to`b` returns 0
+  So not swapping: -> `5,10`,4,3
+  Next step is: `b`=`10` `a`=`4` -> negative -> swapping -> 5,`4,10`,3
+  Next step is: `b`=`10` `a`=`3` -> negative -> swapping -> 5,4,`3,10`
+
+Next step is: `b`=`5` `a`=`4` -> negative -> swapping -> `4,5`,3,10
+Next step is: `b`=`5` `a`=`3` -> negative -> swapping -> 4,`3,5`,10
+Next step is: `b`=`5` `a`=`10` -> negative -> not swapping -> 4,3,`5,10`
+
+Next step is: `b`=`4` `a`=`3` -> negative -> not swapping -> `3,4`,5,10
+
+### Sort strings with comparator function
+
+```js
+const data = ["t", "A", "a", "B", "b"];
+data.sort(); // A B a b t !!!!!
+
+data.sort((a, b) => {
+  return a.locale(b);
+}); // a A b B t
+```
+
+### Sort objects
+
+```js
+const data = [
+    {name: 'Carrot', weight: 2, cost: 3},
+    {name: 'Onion', weight: 4, cost: 12},
+    {name: 'Potato', weight: 5, cost: 5.5},
+]
+
+function getSortVal(vegetable) {
+    return vegetable.cost  // weight / name / ...
+}
+
+data.sort((a, b) => {
+    const valA = getSortVal(a)
+    const valB = getSortVal(b)
+    if typeof(valA) === 'string':
+        return valA.localeCompare(valB)
+    return valA - valB
+})
+```
+
+name / strings:
+{name: 'Carrot', weight: 2, cost: 3},
+{name: 'Onion', weight: 4, cost: 12},
+{name: 'Potato', weight: 5, cost: 5.5},
+
+cost / weight / numbers:
+{name: 'Carrot', weight: 2, cost: 3},
+{name: 'Potato', weight: 5, cost: 5.5},
+{name: 'Onion', weight: 4, cost: 12},
+
+### Flipping sorting order
+
+Multiply by `-1`
+
+```js
+const data = [...]
+function getSortVal(vegetable) {...}
+
+const sortOrder = 'asc'
+
+data.sort((a, b) => {
+    const valA = getSortVal(a)
+    const valB = getSortVal(b)
+    const reverseOrder = sortOrder === 'asc'? 1 : -1
+    if typeof(valA) === 'string':
+        return valA.localeCompare(valB) * reverseOrder
+    return (valA - valB)  * reverseOrder
+})
+```
+
 ##
