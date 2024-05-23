@@ -1,4 +1,5 @@
 import TableSortable from "../components/TableSortable";
+import Table from "../components/Table";
 
 function TablePage() {
   // it's hardcoded now, but cpould be from anything: database, user input, etc
@@ -40,6 +41,7 @@ function TablePage() {
 
   return (
     <div>
+      <Table data={data} config={config} keyFn={keyFn} />
       <TableSortable data={data} config={config} keyFn={keyFn} />
     </div>
   );
