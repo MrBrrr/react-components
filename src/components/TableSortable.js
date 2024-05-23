@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { GoArrowUp, GoArrowDown } from "react-icons/go";
+
 import Table from "./Table";
 
 function TableSortable(props) {
@@ -9,10 +11,10 @@ function TableSortable(props) {
   // const [data, config, keyFn] = [props.config, props.data, props.keyFn] // same as above ??
 
   const handleClick = (label) => {
-    // if (sortBy === null) {
-    //     //
-    // }
-    if (sortOrder === null) {
+    if (sortBy && label !== sortBy) {
+      setSortOrder("asc");
+      setSortBy(label);
+    } else if (sortOrder === null) {
       setSortOrder("asc");
       setSortBy(label);
     } else if (sortOrder === "asc") {
@@ -22,7 +24,30 @@ function TableSortable(props) {
       setSortOrder(null);
       setSortBy(null);
     }
-    console.log("sorting by", label, sortOrder);
+  };
+
+  const sortableButton = (sortableCol) => {
+    if (sortableCol === sortBy) {
+      if (sortOrder === "asc") {
+        return (
+          <div>
+            <GoArrowUp />
+          </div>
+        );
+      } else if (sortOrder === "desc") {
+        return (
+          <div>
+            <GoArrowDown />
+          </div>
+        );
+      }
+    }
+    return (
+      <div>
+        <GoArrowUp />
+        <GoArrowDown />
+      </div>
+    );
   };
 
   const updatedConfig = config.map((column) => {
@@ -31,10 +56,11 @@ function TableSortable(props) {
         ...column, // all the keys and valus of existing column object
         header: () => (
           <th
-            className="p-3 cursor-pointer"
+            className="p-3 cursor-pointer flex item-center cursor-pointer hover:bg-gray-200"
             onClick={() => handleClick(column.label)}
           >
-            {column.label} IS SORTABLE
+            {sortableButton(column.label)}
+            {column.label}
           </th>
         ),
       };
@@ -61,12 +87,7 @@ function TableSortable(props) {
     });
   }
 
-  return (
-    <div>
-      {sortOrder} - {sortBy}
-      <Table {...props} config={updatedConfig} data={sortedData} />
-    </div>
-  );
+  return <Table {...props} config={updatedConfig} data={sortedData} />;
 }
 
 export default TableSortable;
