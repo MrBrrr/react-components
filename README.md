@@ -662,6 +662,7 @@ data.sort((a, b) => {
 ```
 
 ## Brute Force hook creation
+
 1. create hook called useSomething
 1. take non-JSX code referes to 1-2 realted piece of state and move it from component to useSomething hook
 1. (in component) find all errors regarding non-defined references
