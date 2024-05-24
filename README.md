@@ -661,4 +661,15 @@ data.sort((a, b) => {
 })
 ```
 
+## Brute Force hook creation
+1. create hook called useSomething
+1. take non-JSX code referes to 1-2 realted piece of state and move it from component to useSomething hook
+1. (in component) find all errors regarding non-defined references
+1. (in the hook) return an object that contains the non-defined variables (from step above)
+1. (in the component) call the hook and destructure properties needed
+1. (in hook) find non-defined errors and pass missing variables inside the hook call
+1. rename accordingly the hook and returned properties
+
+Refer to [CounterPage.js](/src/pages/CounterPage.js)
+
 ##
