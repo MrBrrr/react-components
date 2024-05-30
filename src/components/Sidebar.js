@@ -8,6 +8,7 @@ function Sidebar() {
     { label: "Modal", url: "/modal" },
     { label: "Table", url: "/table" },
     { label: "Counter", url: "/counter" },
+    { label: "ImmerCounter", url: "/immer-counter" },
   ];
 
   const renderedLinks = links.map((link) => {

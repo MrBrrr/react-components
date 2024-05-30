@@ -743,5 +743,12 @@ Updating states:
 - no async/await, no promises, no requests, no outside variables
 - keep logic inside `reducer` instead of `dispatch` call 
 
+### Immer library
+
+as addition to useReducer but not every project uses it. ANd there are very important  differences:
+- no need to return value from reducer,
+- but there had to be return inside switch case to avoid fallthrough error
+- state can be mutated directly
+
 
 ##
