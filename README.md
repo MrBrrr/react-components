@@ -673,4 +673,75 @@ data.sort((a, b) => {
 
 Refer to [CounterPage.js](/src/pages/CounterPage.js)
 
+## useReducer hook
+
+- alternative to useState - it also produces a state, and updating it (state) causes the component rerender
+- useful when several closely relates states
+- useful when future state value depends on the current state ([checkout this file](src/pages/CounterPage.js) 54b83a96076be67ac124729ca3e69d7dd347555b before refactor)
+
+
+```js
+const [count, setCount] = useState(initialCount);
+const [valueToAdd, setValueToAdd] = useState(0);
+// those are equal 
+const [state, dispatch] = useReducer(reducer, {
+    count: initialCount,
+    valueToAdd: 0,
+})
+```
+state variables: `count`, `valueToAdd` & `state`  
+function to change state: `setCount`, `setValueToAdd` & `dispatch`  
+initial value: `initialCount`, `0` & `object` with both fields  
+
+Refering to states:
+- count -> state.count
+- valueToAdd -> state.valueToAdd
+
+```js
+const HANDLE_STH = "handle-something";
+const HANDLE_STH_ELSE = "handle-something-else";
+
+const reducer = (state, action) => {
+  // state - current state (object)
+  // action - newValue gathered from dispatch call
+  
+  // THIS IS MISTAKE
+  // state.count = state.count + action
+
+  // THIS IS CORRECT
+  // return new state
+  switch(action.type) {
+    case HANDLE_STH:
+      return {
+        ...state,  // add it to accept new keyas added in the future 
+        count: state.count * action.payload,
+        valueToAdd: action.payload,
+      }
+    case HANDLE_STH_ELSE:
+      return {
+        ...state,
+        count: state.count - action.payload,
+      }
+    // ALWAYS RETURN SOMETHING !!!!!!
+    default:
+      return state;
+      // or
+      throw new Error(`Unsupported action type: ${action.type}`);
+}
+
+dispatch({
+  type: "handle-something"
+  payload: newValue
+  })
+```
+
+Updating states:
+- by call `dispatch(value)`
+- dispatch takes 0 or 1 arguments (if more than 1 are passed it will ignore them)
+- whatever reducer returns it will be a new state
+- no return -> new state = undefind
+- no async/await, no promises, no requests, no outside variables
+- keep logic inside `reducer` instead of `dispatch` call 
+
+
 ##

@@ -13,7 +13,7 @@ function Button({
   outline,
   ...rest // handling all the different props: event handlers like onClick, onmouseover etc.
 }) {
-  console.log(rest);
+  // console.log(rest);
   const classes = twMerge(
     className("flex items-center px-3 py-1.5 border", {
       "border-sky-600 bg-sky-500 text-white": primary,
