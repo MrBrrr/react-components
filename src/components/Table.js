@@ -1,13 +1,13 @@
 import { Fragment } from "react";
 
 function Table({ data, config, keyFn }) {
-  const renderedHeaders = config.map((header) => {
-    if (header.header) {
-      return <Fragment key={header.label}>{header.header()}</Fragment>;
+  const renderedHeaders = config.map((column) => {
+    if (column.header) {
+      return <Fragment key={column.label}>{column.header()}</Fragment>;
     } else {
       return (
-        <th key={header.label} className="p-3">
-          {header.label}
+        <th key={column.label} className="p-3">
+          {column.label}
         </th>
       );
     }

@@ -743,12 +743,30 @@ Updating states:
 - no async/await, no promises, no requests, no outside variables
 - keep logic inside `reducer` instead of `dispatch` call 
 
-### Immer library
+## Immer library
 
 as addition to useReducer but not every project uses it. ANd there are very important  differences:
 - no need to return value from reducer,
 - but there had to be return inside switch case to avoid fallthrough error
 - state can be mutated directly
 
+## Redux
+
+`Redux` vs `useReaducer`
+- similar: dispatch function (with action), reducer, state
+- different:
+  - Readux Store is a separate object - component connnects to store and access the states inside 
+    vs. all states within React world (they can be used inside the component and its children)
+  - multiple reducer functions managing different part of the state 
+    vs. only one reducer handling all states
+
+### React-Redux library 
+
+makes easier the connection between (React) app and Redux Store with usage of `context`.
+
+### Redux Toolkit library (RTK)
+
+a wrapper around Readux, to simplify action type creation proccess
+_It is a recommended way - for moving foreward with the projects_ 
 
 ##
